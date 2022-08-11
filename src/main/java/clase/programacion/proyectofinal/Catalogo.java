@@ -36,6 +36,7 @@ public class Catalogo extends JFrame implements ActionListener, ChangeListener{
         cat.setBounds(0,0,1200,720);
         cat.setVisible(true); 
         
+        //prueba
     }
     
     public Catalogo(){
@@ -199,6 +200,8 @@ public class Catalogo extends JFrame implements ActionListener, ChangeListener{
                 ImageIcon scaledIcon = new ImageIcon(scale);
                 peli2.setIcon(scaledIcon);
             }
+            
+            
             
         }
     }
