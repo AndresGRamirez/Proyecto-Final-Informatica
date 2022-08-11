@@ -34,9 +34,7 @@ public class Catalogo extends JFrame implements ActionListener, ChangeListener{
     public static void main(String[] args) {
         Catalogo cat = new Catalogo();
         cat.setBounds(0,0,1200,720);
-        cat.setVisible(true); 
-        
-        //prueba
+        cat.setVisible(true);        
     }
     
     public Catalogo(){
