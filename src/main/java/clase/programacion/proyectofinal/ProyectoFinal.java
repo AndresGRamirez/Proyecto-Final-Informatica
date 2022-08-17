@@ -15,8 +15,8 @@ import java.awt.event.*;
  */
 public class ProyectoFinal extends JFrame implements ActionListener, ChangeListener{
     
-    private String usuario;
-    private String contra;
+    String usuario = "Admin";
+    String contra = "cine";
     
     private JButton b1, b2, b3, b4;
     private JLabel l1, l2, l3, l4;
@@ -28,7 +28,8 @@ public class ProyectoFinal extends JFrame implements ActionListener, ChangeListe
         ProyectoFinal vInicio = new ProyectoFinal();
                 
         //Ventana de Log-In
-        vInicio.setBounds(750,400,400,300);
+        vInicio.setSize(400,300);
+        vInicio.setLocationRelativeTo(null);
         vInicio.setVisible(true); 
         vInicio.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -44,13 +45,7 @@ public class ProyectoFinal extends JFrame implements ActionListener, ChangeListe
         l2 = new JLabel("Usuario:");
         l2.setBounds(30,40,70,20);
         tF1 = new JTextField();
-        tF1.setBounds(30,60,330,30);
-        
-        //Contra y textField
-        l3 = new JLabel("Contraseña:");
-        l3.setBounds(30,110,70,20);
-        tF2 = new JTextField();
-        tF2.setBounds(30,130,330,30);        
+        tF1.setBounds(30,60,330,30);        
         
         //boton de continuar
         b1 = new JButton("Continuar");
@@ -59,9 +54,7 @@ public class ProyectoFinal extends JFrame implements ActionListener, ChangeListe
         
         add(l1);
         add(l2);
-        add(l3);
         add(tF1);
-        add(tF2);
         
         add(b1);
         b1.addActionListener(this);
@@ -72,7 +65,8 @@ public class ProyectoFinal extends JFrame implements ActionListener, ChangeListe
         if(e.getSource()==b1){
             //Encener la nueva ventana
             MenuPrincipal mP = new MenuPrincipal();
-            mP.setBounds(0,0,1920,1080);
+            mP.setSize(1920,1080);
+            mP.setLocationRelativeTo(null);
             mP.show();
             
             //Poner Usuario activo en el titulo de la ventana
