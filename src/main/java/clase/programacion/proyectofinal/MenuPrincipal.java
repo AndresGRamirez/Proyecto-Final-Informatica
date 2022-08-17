@@ -100,8 +100,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, ChangeListe
         
         //Catalogo y mantenimiento de peliculas
         if(e.getSource()==b1){
-            Catalogo cat = new Catalogo();
-            cat.setBounds(200,0,1080,580);
+            GUI_Catalogo cat = new GUI_Catalogo();
+            cat.setBounds(200,0,880,580);
             cat.show();
             cat.setResizable(false);
             
