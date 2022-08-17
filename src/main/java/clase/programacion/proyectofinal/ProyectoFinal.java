@@ -51,7 +51,6 @@ public class ProyectoFinal extends JFrame implements ActionListener, ChangeListe
         b1 = new JButton("Continuar");
         b1.setBounds(150,200,100,30);
         
-        
         add(l1);
         add(l2);
         add(tF1);
