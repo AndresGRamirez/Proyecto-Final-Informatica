@@ -77,6 +77,7 @@ public class ProyectoFinal extends JFrame implements ActionListener, ChangeListe
             mP.setDefaultCloseOperation(EXIT_ON_CLOSE);
             
         }
+        
     }
     
     public void stateChanged(ChangeEvent f){
