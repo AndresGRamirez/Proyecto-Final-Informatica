@@ -10,6 +10,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.event.*;
+
 /**
  *
  * @author Emiliano
@@ -90,8 +91,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, ChangeListe
         b1.addActionListener(this);
         b2.addActionListener(this);
         b3.addActionListener(this);
-        b4.addActionListener(this);
-                
+        b4.addActionListener(this);                
         mItem2.addActionListener(this);
         
     }
