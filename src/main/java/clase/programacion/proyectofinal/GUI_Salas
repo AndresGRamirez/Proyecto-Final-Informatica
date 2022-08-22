@@ -1,0 +1,183 @@
+package clase.programacion.proyectofinal;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.table.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+
+
+public class GUI_Salas extends JFrame implements ActionListener, ChangeListener{
+
+DefaultTableModel mdl = new DefaultTableModel();
+ArrayList<Salas> listSalasCine = new ArrayList<Salas>();
+
+public GUI_Salas() {
+        initComponents();
+        setTitle("MANTENIMIENTO DE SALAS");
+        
+        mdl.addColumn("Sala");
+        
+        
+        refreshTable();
+    }
+
+//Variables 
+
+private javax.swing.JButton bot_Agregar;
+private javax.swing.JButton bot_Clear;
+private javax.swing.JButton bot_Eliminar;
+private javax.swing.JLabel jLabel1;
+private javax.swing.JScrollPane jScrollPane1;
+private javax.swing.JLabel numSala;
+private javax.swing.JComboBox<String> num_Sala;
+private javax.swing.JTable tabla_SalasCine;
+    
+
+private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        numSala = new javax.swing.JLabel();
+        num_Sala = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_SalasCine = new javax.swing.JTable();
+        b_Agregar = new javax.swing.JButton();
+        b_Eliminar = new javax.swing.JButton();
+        b_Clear = new javax.swing.JButton();
+
+setPreferredSize(new java.awt.Dimension(1080, 580));
+getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); 
+jLabel1.setText("Mantenimiento de Salas");
+getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 14, 286, 75));
+
+
+
+
+numSala.setFont(new java.awt.Font("Segoe UI", 1, 14)); 
+numSala.setText("Numero de Sala:");
+getContentPane().add(numSala, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 153, 146, 37));
+
+sel_Sala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sala 1", "Sala2", "Sala 3", "Sala 4" }));
+num_Sala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               num_SalaActionPerformed(evt);
+            }
+        });
+        
+getContentPane().add(num_Sala,new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 154, 352, 40));
+
+
+tabla_SalasCine.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Sala 1", "Sala 2", "Sala 3", "Sala 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla_SalasCine);
+
+getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 294, 516, 183));
+
+
+bot_Agregar.setText("Agregar");
+        bot_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bot_AgregarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(b_Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 260, -1, -1));
+
+        bot_Eliminar.setText("Eliminar");
+        bot_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bot_EliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(b_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 260, -1, -1));
+
+        bot_Clear.setText("Eliminar todas las salas");
+        bot_Clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bot_ClearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bot_Clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(558, 260, 120, -1));
+
+        pack();
+
+
+private void num_SalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_num_SalaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_num_SalaActionPerformed
+
+
+private void bot_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bot_EliminarActionPerformed
+        int fila = tabla_SalasCine.getSelectedRow();
+        
+        if(fila >=0){
+            mdl.removeRow(fila);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar.");
+        }
+    }//GEN-LAST:event_b_EliminarActionPerformed
+
+
+private void bot_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bot_AgregarActionPerformed
+        
+        try{
+            Salas salascine = new Salas();
+            salascine.setSala(num_Sala.getSelectedItem().toString());
+            listSalascine.add(salascine);
+            refreshTable();
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Faltan datos.");
+            
+        }
+        
+    }//GEN-LAST:event_bot_AgregarActionPerformed
+
+
+private void bot_ClearActionPerformed(java.awt.event.ActionEvent evt) {        
+int fila = tabla_Salascine.getRowCount();
+        
+        for(int i = fila-1; i >=0; i--){
+            mdl.removeRow(i);
+        }
+    }//GEN-LAST:event_b_ClearActionPerformed
+
+    
+    public void refreshTable(){
+        //Borrar todos los elementos del modelo.
+        while(mdl.getRowCount()>0){
+            mdl.removeRow(0);
+        }
+        
+        for(Salas sal : listSalasCine){
+            Object o[] = new Object[1];
+            o[0] = sal.getSala();
+            mdl.addRow(o);
+        }
+        
+        tabla_Salascine.setModel(mdl);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
