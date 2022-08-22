@@ -1,0 +1,136 @@
+package clase.programacion.proyectofinal;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.table.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+
+
+public class Salas extends JFrame implements ActionListener, ChangeListener{
+        
+    private JLabel l1,l2;
+    public String sala1,sala2,sala3,sala4;
+    
+    private JButton b1;
+    
+    private JComboBox sel1, sel2;
+    
+    private JTextField tf;
+    private JTextArea salas;
+    private JScrollPane sc;
+    
+    
+    public static final String[] column ={"Sala"};
+    
+    DefaultTableModel tabla = new DefaultTableModel(column,0);
+    private JTable mantSalas = new JTable(tabla);
+    ArrayList<Salas> listaSalascine = new ArrayList<Salas>();
+    
+        
+    public static void main(String[] args) {
+        Catalogo cat = new Catalogo();
+        cat.setBounds(0,0,1920,1080);
+        cat.setVisible(true);        
+    }
+    
+    public Catalogo(){
+        setLayout(null);
+        
+        //String Salas 
+        sala1 = new String("Sala 1");
+        sala2 = new String("Sala 2");
+        sala3 = new String("Sala 3");
+        sala4 = new String("Sala 4");
+        
+ 
+        
+        l1 = new JLabel("Mantenimiento de Salas",SwingConstants.CENTER);
+        l1.setBounds(340,50,360,30);
+        l1.setFont(new Font("Arial",Font.BOLD,20));
+        
+        l2 = new JLabel("Numero de sala: ");
+        l2.setBounds(270,170,200,20);
+        l2.setFont(new Font("Arial",Font.BOLD,18));
+        tf = new JTextField();
+        tf.setFont(new Font("Arial",Font.PLAIN,14));
+        tf.setBounds(450,165,300,30);
+        
+      
+        //Selección de salas
+        sel1 = new JComboBox();
+        sel1.setBounds(450,195,300,30);
+        sel1.setFont(new Font("Arial",Font.BOLD,16));
+        sel1.addItem(sala1);
+        sel1.addItem(sala2);
+        sel1.addItem(sala3);
+        sel1.addItem(sala4);
+        
+
+        b1 = new JButton("Agregar");
+        b1.setBounds(270,270,200,20);       
+        
+        tabla.addColumn("Sala");
+       
+        sc = new JScrollPane();
+        
+        mantSalas.setFont(new Font("Arial",Font.PLAIN,16));
+        mantSalas.setBounds(270,300,500,200);
+        sc.setViewportView(mantSalas);
+        
+        refreshTable();           
+        
+        //Seleccion de Salas             
+        add(sc);
+        add(mantSalas);      
+        
+        //Label Titulo y Seleccion de Salas
+        add(l1); 
+        add(l2);
+        add(tf);
+        add(b1);
+        add(sel1);
+              
+        
+        sel1.addActionListener(this);
+        b1.addActionListener(this);
+        
+    }   
+    
+    
+    public void actionPerformed(ActionEvent e){
+        
+        if(e.getSource()==b1){
+            try{
+Salas = sl new Salas();                                                                   sl.setSala(sel1.getSelectedItem().toString());
+                listaSalasCine.add(sl);
+                refreshTable();
+                //tabla.addRow(new Object[]{tf.getText()});
+            
+            } catch (Exception g){
+                JOptionPane.showMessageDialog(this,"Faltan datos");
+            }
+        }       
+    }
+    
+    public void refreshTable(){
+        //Borrar todos los elementos del modelo, se hace para que no se dupliquen
+        while(tabla.getRowCount()>0){
+            tabla.removeRow(0);
+        }
+        
+        for(Salas sal : listaSalascine){
+            Object o[] = new Object[1];
+            o[0] = sal.getSala();
+            tabla.addRow(o);
+        }
+        
+        mantSalas.setModel(tabla);
+    }
+        
+    public void stateChanged(ChangeEvent f){
+        
+    }
+    
+}
